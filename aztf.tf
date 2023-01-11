@@ -79,5 +79,5 @@ resource "azurerm_ssh_public_key" "example" {
   name                = "example"
   resource_group_name = "example"
   location            = "West Europe"
-  public_key          = file("~/.ssh/id_rsa.pub")
+  public_key          = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCz8m1oseIPAs+N+l2VND/0j4G9W48tEjfJCcU0iIIlb8EUtyVlJUw4u3sp9SWtQfVmt2A0E9KGnUwFl6a4m+kK7A+hrtmXd6aDEZ+e1/kQBmkHabM/AJ7pP4AKge9es0Rc0HPjG+3YE14sJGXOJWrPBK6t5p5Vitzg7cFzdyCuvb51HCY1GSnRD1X6f855Mk6CGx+zPM5djyA2NHJ5poKULA406h1jrSlOA3zqPw06Rr13m+s0U5PTNvD7uSWmF6OGbW/J2MPCCtB5A8/mbnRy0Dgia3P8xImtvANgL6N0Uutkq6uxeH2vUZAGDmYB8T+luB8Ev7w7+SNNEWBNtHuudUX2Kf3nSoatwfZXMGFFp/AkzwkoHN8iV+5OY1dagu2ldiiZO9y0dGxtagCcRKztGGVO904a3gSsto77O6sekeadgdW+Y4KrbFcEUnuaB6ShsQ/866pBei3x12UVYoLNGcEtz0jymJ8lHCLO7f6b8irpH/juRPjWRvJUGACtoZ0="
 }
