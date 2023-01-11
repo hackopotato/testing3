@@ -20,46 +20,46 @@ provider "azurerm" {
 
 #### Add your terraform below
 
-resource "azurerm_resource_group" "example" {
-  name     = "example-resources"
+resource "azurerm_resource_group" "azrg" {
+  name     = "test-rg"
   location = "West Europe"
 }
 
-resource "azurerm_virtual_network" "example" {
-  name                = "example-network"
+resource "azurerm_virtual_network" "azvnet" {
+  name                = "test-network"
   address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.azrg.location
+  resource_group_name = azurerm_resource_group.azrg.name
 }
 
-resource "azurerm_subnet" "example" {
-  name                 = "internal"
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
+resource "azurerm_subnet" "azsubnet" {
+  name                 = "test-subnet"
+  resource_group_name  = azurerm_resource_group.azrg.name
+  virtual_network_name = azurerm_virtual_network.azvnet.name
   address_prefixes     = ["10.0.2.0/24"]
 }
 
-resource "azurerm_network_interface" "example" {
-  name                = "example-nic"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+resource "azurerm_network_interface" "aznic" {
+  name                = "test-nic"
+  location            = azurerm_resource_group.azrg.location
+  resource_group_name = azurerm_resource_group.azrg.name
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.example.id
+    subnet_id                     = azurerm_subnet.azsubnet.id
     private_ip_address_allocation = "Dynamic"
   }
 }
 
-resource "azurerm_windows_virtual_machine" "example" {
-  name                = "example-machine"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
+resource "azurerm_windows_virtual_machine" "azvm" {
+  name                = "test-vm"
+  resource_group_name = azurerm_resource_group.azrg.name
+  location            = azurerm_resource_group.azrg.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
   admin_password      = "P@$$w0rd1234!"
   network_interface_ids = [
-    azurerm_network_interface.example.id,
+    azurerm_network_interface.aznic.id,
   ]
 
   os_disk {
